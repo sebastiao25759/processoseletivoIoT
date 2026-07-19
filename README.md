@@ -1,350 +1,111 @@
-# Processo Seletivo – Intensivo Maker | IoT
-
-## Etapa Prática – Sistemas Embarcados
-
-Bem-vindo(a) à **etapa prática do processo seletivo para o Intensivo Maker | IoT**.
-
-Esta atividade tem como objetivo avaliar suas competências em **Sistemas Embarcados**, com foco em **organização de projeto, lógica de firmware e simulação de hardware**, a partir da aplicação prática dos conhecimentos adquiridos nos cursos EAD da etapa anterior.
-
-> **Objetivo principal**  
-> Avaliar sua capacidade de **planejar, estruturar e desenvolver** uma solução funcional de sistemas embarcados, seguindo boas práticas de engenharia.
-
----
-
-## Antes de Tudo
-
-Se você **nunca utilizou Git ou GitHub**, não se preocupe.  
-Siga atentamente os passos abaixo.
-
----
-
-### 1 - Criação de Conta no GitHub
-
-1. Acesse: <https://github.com>
-2. Clique em **Sign up**
-3. Crie sua conta gratuita seguindo as instruções da plataforma
-
-> O GitHub será utilizado para:
->
-> - Envio do seu projeto
-> - Versionamento do código
-> - Correção e validação automática via GitHub Actions
-
----
-
-### 2 - Instalação do Git
-
-O **Git** é a ferramenta responsável pelo controle de versões do seu código.
-
-### Windows
-
-Baixe e instale o **Git Bash**:  
-<https://git-scm.com/downloads>
-
-### Linux / macOS
-
-Verifique se o Git já está instalado:
-
-```bash
-git --version
-```
-
-> Caso não esteja, instale pelo gerenciador de pacotes do seu sistema.
-
-## Preparando o Ambiente
-
-Para desenvolver o desafio, você deverá criar uma cópia deste repositório no seu GitHub.
-
-### 1 - Fork do Repositório
-
-No canto superior direito desta página, clique em Fork
-
-<img width="219" height="45" alt="image" src="https://github.com/user-attachments/assets/5d629626-513a-445c-ba0f-e5bb3e225187" />
-
-Uma cópia do repositório será criada no seu perfil do GitHub
-
-> O Fork permite que você trabalhe de forma independente, sem alterar o repositório original do processo seletivo.
-
-### 2 - Clone do Repositório
-
-No repositório do seu Fork, clique em **<> Code**
-
-<img width="149" height="52" alt="image" src="https://github.com/user-attachments/assets/abbd331b-a005-4633-89c6-afd16acbe828" />
-
-Copie a URL e execute no terminal:
-
-```bash
-git clone https://github.com/SEU_USUARIO/nome-do-repositorio.git
-cd nome-do-repositorio
-```
-
-> O comando git clone cria uma cópia local do repositório para desenvolvimento.
-
-### 3 - Preparação do Ambiente de Execução
-
-Você pode executar o projeto de duas formas. Escolha apenas uma.
-
-#### Opção A – Ambiente Python Local
-
-**Requisitos:**
-
-- Python 3.10 ou 3.11
-- pip
-
-**Instale as dependências:**
-
-```bash
-pip install -r requirements.txt
-```
-
-#### Opção B – Dev Container (Recomendado)
-
-Este repositório inclui um Dev Container, garantindo um ambiente padronizado.
-
-**Requisitos:**
-
-- VS Code
-- Docker instalado
-- Extensão Dev Containers
-
-**Passos:**
-
-1. Abra o repositório no VS Code
-2. Clique em “Reopen in Container”
-3. Aguarde a criação automática do ambiente
-
-> Todas as dependências serão instaladas automaticamente.
-
-## Criando sua API Key do Wokwi
-
-A simulação do projeto será executada automaticamente via GitHub Actions, utilizando o Wokwi CLI.
-
-Para isso, você precisa gerar uma API Key.
-
-1. Acesse: <https://wokwi.com/dashboard/ci>
-2. Faça login (Google ou GitHub)
-3. Clique em Generate API Token
-4. Copie a chave gerada (exemplo: wokwi-xxxxxxxx)
-
-> Importante
-
-- Nunca faça commit dessa chave
-- Ela deve ser armazenada apenas como secret no GitHub
-
-## Configurando a API Key no GitHub (Secrets)
-
-**No repositório do seu Fork:**
-
-1. Vá em Settings
-2. Acesse Secrets and variables → Actions
-3. Clique em New repository secret
-4. Nome: WOKWI_API_KEY
-5. Valor: sua chave gerada
-6. Salve
-
-> As GitHub Actions do template já estão preparadas para usar essa variável automaticamente.
-
-## Desafio Técnico
-
-Você deverá desenvolver um projeto de sistemas embarcados simulados, utilizando Python e Wokwi.
-
-### Estrutura mínima esperada
-
-```text
-/project
- ├── src/
- │   └── main.py        # Código principal do projeto
- ├── wokwi.toml         # Configuração da simulação
- ├── diagram.json       # Circuito no Wokwi
- └── README.md          # Explicação do seu projeto
-```
-
-> Você pode expandir essa estrutura se desejar, desde que mantenha os arquivos essenciais.
-
-### Escolha do cenário
-
-No diretório "scenarios" existem arquivos .md e pastas referentes a diferentes desafios. Selecione apenas um deles e mantenha apenas a pasta e .md referente ao desafio a ser desenvolvido, deletando os demais. Isso fará com o que o fluxo de testes automáticos selecione o fluxo de acordo com o desafio escolhido.
-
-### Como Desenvolver seu Projeto
-
-O desenvolvimento acontece principalmente nos arquivos abaixo:
-
-#### src/main.py
-
-- Código Python executado na simulação
-- Implementa a lógica do sistema embarcado
-- Exemplos: controle de LEDs, leitura de sensores, estados, temporizações, etc.
-
-#### diagram.json
-
-- Define o hardware virtual do projeto
-- Componentes como:
-  - LEDs
-  - Botões
-  - Sensores
-  - Placa microcontroladora
-
-#### wokwi.toml
-
-- Configura a simulação:
-  - Tipo de placa
-  - Framework
-  - Dependências adicionais
-
-#### Commit e Push
-
-Após suas alterações:
-
-```bash
-git add .
-git commit -m "Descrição clara do que foi feito"
-git push
-```
-
-### Execução Automática (GitHub Actions)
-
-A cada push, o GitHub Actions irá automaticamente:
-
-- Executar o pipeline de build
-- Rodar a simulação via Wokwi CLI
-- Validar que o projeto executa sem erros
-
-### Caso algo falhe
-
-- Vá até a aba Actions
-- Analise os logs da execução
-- Corrija e envie novamente
-
-## Critérios de Avaliação
-
-Esta etapa será avaliada considerando:
-
-- Funcionamento correto da simulação
-- Código organizado e legível
-- Estrutura de arquivos correta
-- Uso adequado do Wokwi
-- Commits claros e bem descritos
-- Projeto executando sem falhas nas Actions
-
----
-
-## Submissão Final
-
-Após concluir o desenvolvimento:
-
-1. Verifique se o projeto **executa sem erros** nas GitHub Actions
-2. Confirme que todos os arquivos obrigatórios estão presentes
-3. Copie o link do **seu repositório no GitHub**
-
-Envie o link conforme as orientações do processo seletivo na plataforma do **PNAAT**.
-
----
-
-## Relatório do Candidato
-
-O arquivo **`README.md` do seu repositório** deve ser utilizado como o  
-**relatório final do desafio técnico**.
-
-Preencha todas as seções abaixo de forma **clara, objetiva e técnica**.
-
-> **Dica importante**  
-> Não é necessário um relatório extenso.  
-> O principal critério é demonstrar **clareza nas decisões técnicas**, organização e entendimento do sistema embarcado desenvolvido.
-> Não mantenha os demais conteúdos escritos nesse arquivo README, aqui devem ser concentradas apenas informações referentes ao projeto desenvolvido.
-
----
-
 ### Identificação do Candidato
 
-- **Nome completo:**
-- **GitHub:**
+- **Nome completo: Sebastião Araujo Rodrigues**
+- **GitHub: <link>https://github.com/sebastiao25759</link>**
 
 ---
 
 ## Visão Geral da Solução
 
-Descreva, em poucas palavras:
+O objetivo do projeto é desenvolver um sistema embarcado capaz de realizar a contagem automática de peças em uma linha de produção simulada, além de detectar situações de microparada durante o processo.
 
-- Qual é o objetivo do seu projeto
-- O que o sistema embarcado simulado faz
-- Como o usuário interage com ele (se aplicável)
+O sistema utiliza um sensor LDR para identificar a passagem das peças. Sempre que uma peça bloqueia e depois libera o sensor, o contador é incrementado. Caso o sensor permaneça bloqueado por mais de cinco segundos, o sistema identifica uma microparada e exibe um alerta no terminal. Além disso, um botão permite reiniciar a contagem.
+
+A interação do usuário ocorre por meio do botão de reset e pelo monitor serial, onde são exibidas as mensagens de contagem, alertas de microparada e confirmação do reset.
 
 ---
 
 ## Arquitetura do Sistema Embarcado
 
-Explique a arquitetura lógica do seu projeto, abordando:
+O programa foi desenvolvido em um único arquivo (main.py) e utiliza um laço infinito (while True) para realizar continuamente a leitura dos sensores e o controle da aplicação, sem nenhuma chamada bloqueante.
 
-- Fluxo principal do programa (`main.py`)
-- Estrutura de estados, loops ou temporizações
-- Como os componentes interagem entre si
+O funcionamento segue o seguinte fluxo:
 
-Se desejar, utilize tópicos ou um pequeno diagrama em texto.
+```mermaid
+flowchart TD
+    Start([Boot: imprime<br/>&quot;Contador de Producao Inicializado&quot;]) --> Loop[/Loop principal<br/>while True, nao-bloqueante/]
+ 
+    Loop --> ReadLDR[Le ADC do sensor LDR]
+    ReadLDR --> CheckBlocked{ADC acima de<br/>THRESH_BLOCKED?}
+ 
+    CheckBlocked -- "Sim, e ainda<br/>não estava bloqueado" --> EnterBlocked["Marca blocked = True<br/>blocked_since = agora"]
+    CheckBlocked -- "Sim, já<br/>estava bloqueado" --> CheckMicro{Bloqueado ha<br/>mais de 5s?}
+    CheckMicro -- Sim --> AlertMicro["Imprime alerta<br/>de microparada"]
+    CheckMicro -- Não --> Loop
+ 
+    CheckBlocked -- Não --> CheckFree{ADC abaixo de<br/>THRESH_FREE<br/>e estava bloqueado?}
+    CheckFree -- Sim --> Increment["Incrementa total<br/>Imprime Peca detectada"]
+    CheckFree -- Não --> Loop
+ 
+    EnterBlocked --> Loop
+    AlertMicro --> Loop
+    Increment --> Loop
+ 
+    Loop --> ReadBtn[Le estado atual do botao]
+    ReadBtn --> BtnChanged{Estado mudou desde<br/>a ultima leitura?}
+    BtnChanged -- Sim --> ResetDebounce["Reinicia contagem<br/>de debounce (50ms)"]
+    BtnChanged -- Não --> BtnStable{Estavel ha<br/>mais de 50ms?}
+ 
+    BtnStable -- Sim --> BtnEdge{Transicao estavel<br/>pressionado → solto?}
+    BtnEdge -- Sim --> DoReset["Zera contadores<br/>Imprime confirmacao de reset"]
+    BtnEdge -- Não --> Loop
+    BtnStable -- Não --> Loop
+ 
+    ResetDebounce --> Loop
+    DoReset --> Loop
+```
+
+O botão é monitorado continuamente utilizando debounce por software (janela de estabilidade de 50ms) para evitar leituras incorretas provocadas pelo efeito mecânico do acionamento. Uma decisão importante foi disparar o reset **na soltura do botão** (transição estável de pressionado para solto), e não no instante do aperto — isso evita que o reset seja acionado prematuramente enquanto o botão ainda está sendo pressionado, e reduz o risco de múltiplos disparos acidentais durante o próprio acionamento.
 
 ---
 
 ## Componentes Utilizados na Simulação
 
-Liste os principais componentes definidos no `diagram.json`, por exemplo:
-
-- Tipo de placa utilizada
-- LEDs, botões, sensores, atuadores, etc.
-- Função de cada componente no sistema
+- ESP32
+  - Responsável pelo processamento do programa e controle dos periféricos.
+- Sensor LDR
+  - Detecta a presença ou ausência da peça através da variação da luminosidade.
+- Botão (Push Button)
+  - Utilizado para zerar o contador de peças e reiniciar o monitoramento.
+- Monitor Serial
+  - Exibe as mensagens de contagem, alertas de microparada e confirmação do reset.
 
 ---
 
 ## Decisões Técnicas Relevantes
 
-Explique brevemente decisões importantes tomadas durante o desenvolvimento, como:
+Durante o desenvolvimento foram adotadas algumas decisões para tornar o sistema simples, organizado e sincronizado corretamente com o simulador.
 
-- Organização do código
-- Uso de funções, estados ou constantes
-- Estratégias para temporização ou controle lógico
+- Separação da leitura do sensor em uma função específica (`read_lux_raw()`), facilitando futuras alterações.
+- Utilização de constantes para armazenar os valores dos limiares do sensor, tempo de debounce e tempo de microparada.
+- Uso da função `time.ticks_ms()` para controlar o tempo sem interromper a execução do programa.
+- Implementação do debounce por software (50ms) para garantir uma leitura confiável do botão.
+- **Reset disparado na soltura do botão**, e não no aperto: a versão inicial disparava o reset assim que o botão era detectado como pressionado (~50ms após o clique), o que causava uma dessincronia com o cenário de teste automatizado — a mensagem de confirmação era impressa antes mesmo do script começar a aguardá-la. Mover o disparo para a transição pressionado→solto resolveu esse problema e tornou o comportamento mais previsível.
+- Controle da lógica utilizando variáveis de estado (`blocked`, `btn_stable`), permitindo identificar quando uma peça entrou e saiu do sensor, e quando o botão mudou de estado de forma estável.
+- Remoção de qualquer laço de espera bloqueante (inclusive um `while` que aguardava a soltura do botão em uma versão anterior do código), garantindo que o loop principal nunca perca eventos do simulador.
 
 ---
 
 ## Resultados Obtidos
 
-Descreva o comportamento final do sistema:
+Ao final do desenvolvimento, o sistema apresentou o comportamento esperado.
 
-- O que funciona corretamente
-- Quais requisitos foram atendidos
-- Resultado observado na simulação do Wokwi
+- A passagem de cada peça é detectada corretamente.
+- O contador é incrementado apenas uma vez para cada peça.
+- O sistema identifica microparadas quando a peça permanece bloqueando o sensor por mais de cinco segundos.
+- O botão reinicia corretamente o contador sem interferir no funcionamento do programa.
+- Todas as mensagens são exibidas corretamente no monitor serial durante a simulação no Wokwi.
+
+Os três cenários automatizados do CI (contagem de peças, detecção de microparada e reset de turno) passaram com sucesso.
 
 ---
 
 ## Comentários Adicionais (Opcional)
 
-Utilize este espaço para comentar, se desejar:
+Durante o desenvolvimento, a principal dificuldade foi calibrar corretamente os valores do sensor LDR, pois a leitura do ADC varia de forma **inversa** à intensidade da luz: em 800 lux (linha livre) o valor bruto do ADC ficou em torno de 773, enquanto em 50 lux (peça bloqueando) ele subiu para cerca de 2532. Foi necessário rodar a simulação com prints de depuração para descobrir essa relação antes de definir os limiares corretos (`THRESH_FREE` e `THRESH_BLOCKED`).
 
-- Dificuldades encontradas
-- Limitações da solução
-- Melhorias que você faria com mais tempo
-- Principais aprendizados durante o desafio
+Outra dificuldade foi identificar que o reset dependia do momento exato em que a mensagem era impressa em relação aos passos do cenário de teste: mesmo com a mensagem correta sendo exibida no serial, o teste automatizado só reconhece o texto se ele for emitido depois que o próprio passo `wait-serial` começa a monitorar a saída. Isso levou à decisão de mover o disparo do reset para a soltura do botão.
 
----
+Como melhoria futura, seria possível adicionar um display OLED para exibir o número de peças em tempo real, armazenar os dados em memória para geração de relatórios e enviar informações para um servidor utilizando Wi-Fi.
 
-> Este relatório faz parte da avaliação técnica.  
-> Clareza, objetividade e organização são tão importantes quanto o funcionamento do código.
-
----
-
-## Especificação dos Testes Automatizados (Wokwi CI)
-
-Para que o projeto seja validado com sucesso na esteira de integração contínua (CI), o firmware escrito em MicroPython deve interagir corretamente com as leituras dos sensores descritos em cada cenário e enviar as mensagens de status exatas.
-
-### Requisitos Críticos de Implementação
-
-1. **Casamento Exato de Strings:** O Wokwi CI faz uma verificação estrita caractere por caractere. Se houver divergência em maiúsculas/minúsculas, acentuação ou falta de pontuação, o teste irá falhar.
-2. **Arquitetura Não-Bloqueante:** Evite o uso de funções bloqueantes. Elas podem fazer com que o firmware perca a janela de tempo em que o simulador altera o peso, quebrando a sincronia do teste automatizado.
-
----
-
-## Suporte
-
-Em caso de dúvidas:
-
-- Consulte o material dos cursos EAD
-- Leia atentamente este README
-- Analise os logs das GitHub Actions
-- Utilize os canais oficiais para contato com os instrutores
+O desenvolvimento permitiu aplicar conceitos importantes de sistemas embarcados, como leitura de sensores analógicos, tratamento de entradas digitais, temporização não bloqueante, debounce de botões e implementação de lógica baseada em estados.
